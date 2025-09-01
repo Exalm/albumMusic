@@ -4,6 +4,22 @@
     padding: 0;
 }
 
+/* Отключение выделения текста */
+* {
+  -webkit-touch-callout: none; /* для iOS Safari */
+  -webkit-user-select: none;   /* Chrome, Safari, Opera */
+  -khtml-user-select: none;    /* старый Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* IE/Edge */
+  user-select: none;           /* стандарт */
+}
+
+/* Дополнительно для кнопок и интерактивных элементов можно отключить внешнее выделение при нажатии */
+.openAdminModal, .dwn, button {
+  -webkit-tap-highlight-color: transparent; /* отключить подсветку при тапе на мобильных */
+  outline: none;  /* убрать контур фокуса (если нужно) */
+}
+
 main    {
     margin-top: 25px;
 }
@@ -109,3 +125,4 @@ button  {
 @media(max-width: 375px)    {
 
 }
+
