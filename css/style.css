@@ -114,15 +114,22 @@ button  {
 }
 
 @media(max-width: 425px) {
-        .music__box {
-    width: 400px;
+    .music__box {
+    width: 100%;
+    border-radius: 0px;
     }
     .music__container   {
         width: 350px;
     }
+
+    .right > .dwn   {
+        margin-right: 15px;
+    }
 }
 
 @media(max-width: 375px)    {
-
+    .music__box {
+    width: 100%;
+    border-radius: 0px;
+    }
 }
-
