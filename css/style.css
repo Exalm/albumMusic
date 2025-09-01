@@ -1,0 +1,111 @@
+*, html, body   {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+main    {
+    margin-top: 25px;
+}
+
+button  {
+    margin-top: 20px;
+}
+
+.music__box {
+    width: 90%;
+    height: auto;
+    max-height: 100vh; /* максимальная высота как высота окна */
+    margin: 0 auto;
+    padding: 12px 5px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #ccbbbb;
+    overflow-y: auto;  /* вертикальный скролл при переполнении */
+}
+
+.music__container   {
+    width: 95%;
+    height: 40px;
+    border-radius: 50px;
+    background: #fefefe;
+    padding: 35px 17px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.music__container:not(:first-child) {
+    margin-top: 10px;
+}
+
+.left   {
+    display: flex;
+    width: 300px;
+    justify-content: left;
+    align-items: center;
+}
+
+.left > .music__dsc {
+    margin-left: 25px;
+}
+
+.player {
+    font-size: 26px;
+    margin-left: 15px;
+    cursor: pointer;
+}
+
+.music__dsc > .name {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    font-family: "Roboto";
+    cursor: default;
+}
+
+.music__dsc > .author {
+    font-size: 12px;
+    cursor: default;
+}
+
+.music__add {
+    width: 75px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.music__add > .dwn {
+    color: black;
+    cursor: pointer;
+    transition: opacity 0.5s ease;
+}
+
+.music__add > .time {
+    font-family: "Roboto";
+    cursor: default;
+    letter-spacing: 3px;
+}
+
+@media(max-width: 768px)    {
+    .music__box {
+    width: 95%;
+}
+}
+
+@media(max-width: 425px) {
+        .music__box {
+    width: 400px;
+    }
+    .music__container   {
+        width: 350px;
+    }
+}
+
+@media(max-width: 375px)    {
+
+}
