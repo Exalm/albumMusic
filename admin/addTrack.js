@@ -12,6 +12,7 @@ const musicBox = document.querySelector('.music__box');
 const adminModal = document.getElementById('adminModal');
 const closeBtn = document.getElementById('closeAdminModal');
 
+// Создание элемента трека с иконкой
 function createSongElement(song) {
   const div = document.createElement('div');
   div.className = 'music__container';
@@ -26,21 +27,21 @@ function createSongElement(song) {
     <div class="music__add right">
       <div class="time">${song.time}</div>
       <div class="dwn" style="cursor:pointer;">
-        <?xml version="1.0" ?>
-                        <svg fill="#0d52b9ff" width="28px" height="28px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-  <path 
-    d="M256,409.7,152.05,305.75,173.5,284.3l67.33,67.32V34h30.34V351.62L338.5,284.3,360,305.75ZM445.92,351v93.22a3.61,3.61,0,0,1-3.47,3.48H69.15a3.3,3.3,0,0,1-3.07-3.48V351H35.74v93.22A33.66,33.66,0,0,0,69.15,478h373.3a33.85,33.85,0,0,0,33.81-33.82V351Z"
-    stroke="#0d52b9ff"
-    stroke-width="45"
-    stroke-linejoin="round"
-  />
-</svg>
+        <svg fill="#757f8fff" width="28px" height="28px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M256,409.7,152.05,305.75,173.5,284.3l67.33,67.32V34h30.34V351.62L338.5,284.3,360,305.75ZM445.92,351v93.22a3.61,3.61,0,0,1-3.47,3.48H69.15a3.3,3.3,0,0,1-3.07-3.48V351H35.74v93.22A33.66,33.66,0,0,0,69.15,478h373.3a33.85,33.85,0,0,0,33.81-33.82V351Z"
+            stroke="#757f8fff"
+            stroke-width="45"
+            stroke-linejoin="round"
+          />
+        </svg>
       </div>
     </div>
   `;
   return div;
 }
 
+// Сохраняем песни
 function saveSongs() {
   const songs = [];
   musicBox.querySelectorAll('.music__container').forEach(container => {
@@ -53,8 +54,9 @@ function saveSongs() {
   console.log('Сохранено в localStorage:', songs);
 }
 
+// Загружаем песни
 function loadSongs() {
-  musicBox.innerHTML = ''; // очищаем перед загрузкой
+  musicBox.innerHTML = '';
   const saved = localStorage.getItem('songs');
   if (saved) {
     try {
@@ -65,11 +67,45 @@ function loadSongs() {
       });
       console.log('Загружено из localStorage:', songs);
     } catch (e) {
-      console.error('Ошибка при загрузке треков из localStorage:', e);
+      console.error('Ошибка при загрузке треков:', e);
     }
   }
 }
 
+// Изменяем fill и stroke у всех svg path
+function changeAllSvgColors(color) {
+  document.querySelectorAll('svg path').forEach(path => {
+    path.setAttribute('fill', color);
+    path.setAttribute('stroke', color);
+  });
+}
+
+// SHOW/HIDE меню выбора цвета иконки
+document.getElementById('ChangeColorIcon').addEventListener('click', () => {
+  const menu = document.getElementById('IconColorMenu');
+  menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+});
+
+// Применение выбранного цвета
+document.getElementById('applyColorIcon').addEventListener('click', () => {
+  const colorInput = document.getElementById('ColorIcon');
+  const color = colorInput.value;
+
+  changeAllSvgColors(color);
+  localStorage.setItem('iconColor', color);
+  document.getElementById('IconColorMenu').style.display = 'none';
+});
+
+// Восстановление цвета при загрузке
+window.addEventListener('DOMContentLoaded', () => {
+  const savedColor = localStorage.getItem('iconColor');
+  if (savedColor) {
+    document.getElementById('ColorIcon').value = savedColor;
+    changeAllSvgColors(savedColor);
+  }
+});
+
+// Добавление новой песни
 document.getElementById('addBtn').addEventListener('click', () => {
   const newSong = {
     name: 'Нежно к себе',
@@ -81,6 +117,7 @@ document.getElementById('addBtn').addEventListener('click', () => {
   saveSongs();
 });
 
+// Удаление последней песни
 document.getElementById('DeleteBtn').addEventListener('click', () => {
   const lastSong = musicBox.lastElementChild;
   if (lastSong && lastSong.classList.contains('music__container')) {
@@ -89,13 +126,11 @@ document.getElementById('DeleteBtn').addEventListener('click', () => {
   }
 });
 
-// Делегирование клика для открытия админ-панели по кнопке play
+// Делегирование кликов для открытия админки и анимации скачивания
 musicBox.addEventListener('click', (e) => {
   if (e.target.classList.contains('openAdminModal') && e.target.classList.contains('player')) {
     openAdminPanel();
-  }
-  // Логика для кнопки скачивания с анимацией
-  else if (e.target.closest('.dwn')) {
+  } else if (e.target.closest('.dwn')) {
     const button = e.target.closest('.dwn');
     button.style.transition = 'opacity 0.5s ease';
     button.style.opacity = '0';
@@ -108,15 +143,15 @@ musicBox.addEventListener('click', (e) => {
         button.style.opacity = '0';
         setTimeout(() => {
           button.innerHTML = `
-            <?xml version="1.0" ?>
-                        <svg fill="#0d52b9ff" width="28px" height="28px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-  <path 
-    d="M256,409.7,152.05,305.75,173.5,284.3l67.33,67.32V34h30.34V351.62L338.5,284.3,360,305.75ZM445.92,351v93.22a3.61,3.61,0,0,1-3.47,3.48H69.15a3.3,3.3,0,0,1-3.07-3.48V351H35.74v93.22A33.66,33.66,0,0,0,69.15,478h373.3a33.85,33.85,0,0,0,33.81-33.82V351Z"
-    stroke="#0d52b9ff"
-    stroke-width="45"
-    stroke-linejoin="round"
-  />
-</svg>`;
+            <svg fill="#757f8fff" width="28px" height="28px" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M256,409.7,152.05,305.75,173.5,284.3l67.33,67.32V34h30.34V351.62L338.5,284.3,360,305.75ZM445.92,351v93.22a3.61,3.61,0,0,1-3.47,3.48H69.15a3.3,3.3,0,0,1-3.07-3.48V351H35.74v93.22A33.66,33.66,0,0,0,69.15,478h373.3a33.85,33.85,0,0,0,33.81-33.82V351Z"
+                stroke="#757f8fff"
+                stroke-width="45"
+                stroke-linejoin="round"
+              />
+            </svg>
+          `;
           button.style.opacity = '1';
         }, 500);
       }, 3000);
@@ -124,17 +159,17 @@ musicBox.addEventListener('click', (e) => {
   }
 });
 
-// Также обработка открытия админ-панели с клавиатуры (Enter/Space)
+// Клавиатурное открытие админки
 musicBox.addEventListener('keydown', (e) => {
   if ((e.key === 'Enter' || e.key === ' ') &&
-    e.target.classList.contains('openAdminModal') &&
-    e.target.classList.contains('player')
-  ) {
+      e.target.classList.contains('openAdminModal') &&
+      e.target.classList.contains('player')) {
     e.preventDefault();
     openAdminPanel();
   }
 });
 
+// Открытие и закрытие админки
 function openAdminPanel() {
   adminModal.style.display = 'flex';
   document.body.style.overflow = 'hidden';
@@ -151,15 +186,12 @@ function closeAdminPanel() {
 closeBtn.addEventListener('click', closeAdminPanel);
 
 adminModal.addEventListener('click', (e) => {
-  if (e.target === adminModal) {
-    closeAdminPanel();
-  }
+  if (e.target === adminModal) closeAdminPanel();
 });
 
 document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && adminModal.style.display === 'flex') {
-    closeAdminPanel();
-  }
+  if (e.key === 'Escape' && adminModal.style.display === 'flex') closeAdminPanel();
 });
 
+// Загрузка песен при старте
 loadSongs();
