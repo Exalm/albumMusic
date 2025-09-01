@@ -119,7 +119,8 @@ button  {
     border-radius: 0px;
     }
     .music__container   {
-        width: 350px;
+        width: 90%;
+        margin: 0 auto;
     }
 
     .right > .dwn   {
@@ -131,5 +132,9 @@ button  {
     .music__box {
     width: 100%;
     border-radius: 0px;
+    }
+    .music__container   {
+        width: 90%;
+        margin: 0 auto;
     }
 }
