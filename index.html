@@ -3,7 +3,7 @@
 <head>
      <meta charset="UTF-8" />
      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-     <title>Music album</title>
+     <title>Музыкальный альбом с админ панелью</title>
 
      <!-- Иконка для вкладки -->
      <link rel="icon" href="./images/logo.png" type="image/x-icon" />
@@ -46,7 +46,9 @@
             <!-- Ещё один пример песни -->
             <div class="music__container">
                 <div class="left">
-                    <div class="openAdminModal player" tabindex="0">&#9658;</div>
+                    <div class="openAdminModal player" tabindex="0">
+    <img src="./images/player.svg" width="28px" height="28px" class="openAdminModal player" alt="" srcset="">
+</div>
                     <div class="music__dsc">
                         <div class="name">Нежен</div>
                         <div class="author">Артрур Пирожков</div>
@@ -66,44 +68,61 @@
     </main>
 
     <!-- Модальное окно админки -->
-    <div id="adminModal">
-        <div id="adminModalContent">
-            <div id="closeAdminModal" aria-label="Закрыть модальное окно">&times;</div>
-            <h2>Админ-панель</h2>
-            <p>Здесь размещается содержимое вашей админ-панели.</p>
+<div id="adminModal">
+    <div id="adminModalContent">
+        <div id="closeAdminModal" aria-label="Закрыть модальное окно">&times;</div>
+        <h2>Админ-панель</h2>
+        <p>Здесь размещается содержимое вашей админ-панели.</p>
 
-            <button id="changeBackgroundBtn">Изменить задний фон</button>
-            <div id="backgroundColorMenu" style="display:none; margin-top: 15px;">
-                <label>Выберите цвет фона:
-                    <input type="color" id="bgColorPicker" value="#ccbbbb" />
-                 </label>
-                 <button id="applyBgColorBtn">Применить</button>
-            </div>
+        <button id="changeBackgroundBtn">Изменить задний фон</button>
+        <div id="backgroundColorMenu" style="display:none; margin-top: 15px;">
+            <label>Выберите цвет фона:
+                <input type="color" id="bgColorPicker" value="#ccbbbb" />
+            </label>
+            <button id="applyBgColorBtn">Применить</button>
+        </div>
 
-            <button id="changeBackgroundTrackBtn">Изменить задний фон трека</button>
-            <div id="backgroundTrackColorMenu" style="display:none; margin-top: 15px;">
-                <label>Выберите цвет фона:
-                    <input type="color" id="bgColorPickerTrack" value="#ccbbbb" />
-                </label>
-                <button id="applyBgTrackColorBtn">Применить</button>
-            </div>
+        <button id="changeBackgroundTrackBtn">Изменить задний фон трека</button>
+        <div id="backgroundTrackColorMenu" style="display:none; margin-top: 15px;">
+            <label>Выберите цвет фона:
+                <input type="color" id="bgColorPickerTrack" value="#ccbbbb" />
+            </label>
+            <button id="applyBgTrackColorBtn">Применить</button>
+        </div>
 
-            <button id="changeSongTitleBtn">Изменить название песни</button>
-            <button id="changeAuthorNameBtn">Изменить имя автора</button>
+        <button id="changeSongTitleBtn">Изменить название песни</button>
+        <button id="changeAuthorNameBtn">Изменить имя автора</button>
 
-            <button id="ChangeColorIcon">Изменить цвет иконки</button>
-            <div id="IconColorMenu" style="display:none; margin-top: 15px;">
-                    <label>Выберите цвет иконки:
-                        <input type="color" id="ColorIcon" value="#757f8fff" />
-                 </label>
-                 <button id="applyColorIcon">Применить</button>
-             </div>
+        <button id="ChangeColorIcon">Изменить цвет иконки</button>
+        <div id="IconColorMenu" style="display:none; margin-top: 15px;">
+            <label>Выберите цвет иконки:
+                <input type="color" id="ColorIcon" value="#757f8f" />
+            </label>
+            <button id="applyColorIcon">Применить</button>
+        </div>
 
-            <button id="changeTimeBtn">Изменить время трека</button>
-            <button id="addBtn">Добавить песню</button>
-            <button id="DeleteBtn">Удалить трек</button>
-         </div>
+        <button id="changeTimeBtn">Изменить время трека</button>
+
+        <!-- Новый блок: Ползунок изменения размера шрифта -->
+        <div id="fontSizeControl" style="margin-top: 15px;">
+            <label for="fontSizeRange">Размер шрифта: <span id="fontSizeValue">12</span>px</label>
+            <input
+                type="range"
+                id="fontSizeRange"
+                min="10"
+                max="36"
+                value="16"
+                step="1"
+                style="width: 100%;"
+            />
+            <button id="applyFontSizeBtn" style="margin-top: 10px;">Применить размер шрифта</button>
+        </div>
+
+        <button id="addBtn">Добавить песню</button>
+        <button id="DeleteBtn">Удалить трек</button>
     </div>
+</div>
+
 
     <!-- Скрипты -->
     <script src="./admin/changeBG.js"></script>
@@ -113,6 +132,6 @@
     <script src="./admin/changeTime.js"></script>
     <script src="./admin/addTrack.js"></script>
     <script src="./admin/deleteTrack.js"></script>
+    <script src="./admin/changeSize.js"></script>
 </body>
 </html>
-
