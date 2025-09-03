@@ -103,25 +103,41 @@
 
         <button id="changeTimeBtn">Изменить время трека</button>
 
-        <!-- Новый блок: Ползунок изменения размера шрифта -->
+        <!-- Ползунок для размера шрифта названия песни -->
         <div id="fontSizeControl" style="margin-top: 15px;">
-            <label for="fontSizeRange">Размер шрифта: <span id="fontSizeValue">12</span>px</label>
+            <label for="fontSizeRange">Размер шрифта названия: <span id="fontSizeValue">16</span>px</label>
             <input
                 type="range"
                 id="fontSizeRange"
-                min="10"
-                max="36"
-                value="16"
+                min="1"
+                max="120"
+                value="10"
                 step="1"
                 style="width: 100%;"
             />
             <button id="applyFontSizeBtn" style="margin-top: 10px;">Применить размер шрифта</button>
         </div>
 
+        <!-- Новый ползунок для размера шрифта имени автора -->
+        <div id="fontSizeAuthorControl" style="margin-top: 15px;">
+            <label for="fontSizeAuthorRange">Размер шрифта автора: <span id="fontSizeAuthorValue">16</span>px</label>
+            <input
+                type="range"
+                id="fontSizeAuthorRange"
+                min="1"
+                max="120"
+                value="10"
+                step="1"
+                style="width: 100%;"
+            />
+            <button id="applyFontSizeAuthorBtn" style="margin-top: 10px;">Применить размер шрифта автора</button>
+        </div>
+
         <button id="addBtn">Добавить песню</button>
         <button id="DeleteBtn">Удалить трек</button>
     </div>
 </div>
+
 
 
     <!-- Скрипты -->
