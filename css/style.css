@@ -100,12 +100,16 @@ button  {
     color: black;
     cursor: pointer;
     transition: opacity 0.5s ease;
+    background-color: #fff;
+    border-radius: 100%;
+    padding: 5px;
 }
 
 .music__add > .time {
     font-family: "Roboto";
     cursor: default;
     letter-spacing: 3px;
+    letter-spacing: 0.1px;
 }
 
 @media(max-width: 768px)    {
