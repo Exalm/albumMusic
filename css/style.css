@@ -61,7 +61,7 @@ button  {
 
 .left   {
     display: flex;
-    width: 300px;
+    width: auto;
     justify-content: left;
     align-items: center;
 }
@@ -108,8 +108,8 @@ button  {
 .music__add > .time {
     font-family: "Roboto";
     cursor: default;
-    letter-spacing: 3px;
     letter-spacing: 0.1px;
+    margin-right: 15px;
 }
 
 @media(max-width: 768px)    {
@@ -143,11 +143,13 @@ button  {
     border-radius: 0px;
     }
     .music__container   {
-        width: 90%;
+        width: 95%;
         margin: 0 auto;
     }
     main    {
         margin-top: 0px;
     }
-    
-}
+    .left   {
+        width: 200px;
+    }
+}  
